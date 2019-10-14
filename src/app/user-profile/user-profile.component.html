@@ -3,11 +3,11 @@
 <div><img [src]=(user.photo) alt="photo" /></div>
 <div>Last Name : {{ user.name }}</div>
 <div>First Name : {{ user.firstName }}</div>
+<button (click)="displayAge = !displayAge">Display/Hide Age</button>
 <div *ngIf=(displayAge)>Age : {{ user.age }}</div>
 <div>Citation : {{ user.quote }}</div>
 <div><input [(ngModel)]="user.quote" placeholder="Citation"/></div>
 
-<button (click)="displayAge = !displayAge">Display/Hide Age</button>
 
 
 
