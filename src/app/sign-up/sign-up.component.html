@@ -21,13 +21,13 @@
 
                 <div *ngIf="userForm.submitted && nameRef.errors">
                     <div *ngIf="nameRef.errors.required">
-                        Name is required.
+                        The user name field is required.
                     </div>
                     <div *ngIf="nameRef.errors.minlength">
-                        Name must have at least 4 caracters.
+                        The user field must have at least 4 characters.
                     </div>
                     <div *ngIf="nameRef.errors.maxlength">
-                        Name must have less than 25 caracters.
+                        The user field must not exceed 25 characters.
                     </div>
                 </div>
             </div>
@@ -43,10 +43,16 @@
                     <div *ngIf="emailRef.errors.required">
                         Email is required.
                     </div>
+                    <div *ngIf="emailRef.errors.email">
+                        Email is not valid.
+                    </div>
                 </div>
             </div>
-
             <button type="button" class="btn btn-default" (click)="newUser(); userForm.reset()">Reset</button>
             <button type="submit" class="btn btn-success">Submit</button>
+
+            <div *ngIf="userForm.submitted && emailRef.valid && nameRef.valid">
+                <h3>Welcome {{ user.name }}</h3>
+            </div>   
         </form>
 </div>
