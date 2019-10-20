@@ -1,4 +1,52 @@
-<h2>{{email.name}} Details</h2>
-<div><span>Name : </span>{{email.name}}</div>
-<div><span>Your email : </span><input [(ngModel)]="email.email" placeholder="hugo@exemple.com"/></div>
-<div><span>Email : </span>{{email.email}}</div>
+<div class="container">
+    <h2>{{email.name}} Details</h2>
+    <div><span>Name : </span>{{email.name}}</div>
+    <div><span>Your email : </span><input [(ngModel)]="email.email" placeholder="hugo@exemple.com"/></div>
+    <div><span>Email : </span>{{email.email}}</div>
+</div>
+
+
+<hr>
+
+
+<div class="container">
+        <h2>User Profile</h2>
+        <form submit="userForm.valid && onSubmit(userForm)" #userForm="ngForm">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" 
+                    required minlength="4" maxlength="25"
+                    [(ngModel)]="user.name" name="name"
+                    #nameRef="ngModel">
+
+                <div *ngIf="userForm.submitted && nameRef.errors">
+                    <div *ngIf="nameRef.errors.required">
+                        Name is required.
+                    </div>
+                    <div *ngIf="nameRef.errors.minlength">
+                        Name must have at least 4 caracters.
+                    </div>
+                    <div *ngIf="nameRef.errors.maxlength">
+                        Name must have less than 25 caracters.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email"
+                    required
+                    [(ngModel)]="user.email" name="email" email
+                    #emailRef='ngModel'>
+
+                <div *ngIf="userForm.submitted && emailRef.errors">
+                    <div *ngIf="emailRef.errors.required">
+                        Email is required.
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn btn-default" (click)="newUser(); userForm.reset()">Reset</button>
+            <button type="submit" class="btn btn-success">Submit</button>
+        </form>
+</div>
